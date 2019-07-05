@@ -1,12 +1,9 @@
 package com.company.view;
 
 import com.company.controller.GraphCreatorController;
-import com.company.Constants;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import static com.company.Constants.Algorithms.*;
 import static com.company.Constants.NameButton.*;
@@ -19,6 +16,8 @@ class ToolBar extends JPanel {
     private JLabel labelHelp;
     private JButton backStepButton;
     private JButton nextStepButton;
+    private JButton startButton;
+    private JButton finishButton;
 
     public ToolBar(GraphCreatorController controller) {
         this.controller = controller;
@@ -29,6 +28,7 @@ class ToolBar extends JPanel {
         setLayout(new BorderLayout());
         initButtons();
         initLabelHelpAndNextBack();
+        initButtonControlAlgorithms();
     }
 
     private void initButtons() {
@@ -64,14 +64,26 @@ class ToolBar extends JPanel {
         add(panelButton, BorderLayout.NORTH);
     }
 
-    private void initLabelHelpAndNextBack() {
+     private void initLabelHelpAndNextBack() {
         JPanel panelLabel = new JPanel();
-        panelLabel.setLayout(new BoxLayout(panelLabel, BoxLayout.X_AXIS));
+        panelLabel.setLayout(new GridBagLayout());
         panelLabel.setBackground(new Color(222, 239, 216));
         labelHelp = new JLabel();
         labelHelp.setHorizontalAlignment(JLabel.CENTER);
         labelHelp.setVerticalAlignment(JLabel.CENTER);
         labelHelp.setForeground(new Color(106, 119, 61));
+        panelLabel.add(labelHelp);
+        add(panelLabel, BorderLayout.CENTER);
+    }
+
+    private void initButtonControlAlgorithms() {
+        JPanel panel = new JPanel();
+        startButton = new JButton(START);
+        startButton.setEnabled(false);
+        startButton.addActionListener(e -> controller.startAlgorithm());
+        finishButton = new JButton(FINISH);
+        finishButton.setEnabled(false);
+        finishButton.addActionListener(e -> controller.finishAlgorithm());
         backStepButton = new JButton(BACK);
         backStepButton.setEnabled(false);
         backStepButton.addActionListener(e -> controller.backStep());
@@ -79,24 +91,35 @@ class ToolBar extends JPanel {
         nextStepButton.setEnabled(false);
         nextStepButton.addActionListener(e -> controller.nextStep());
 
-        panelLabel.add(backStepButton);
-        panelLabel.add(Box.createHorizontalGlue());
-        panelLabel.add(labelHelp);
-        panelLabel.add(Box.createHorizontalGlue());
-        panelLabel.add(nextStepButton);
-        add(panelLabel, BorderLayout.CENTER);
+        panel.add(backStepButton);
+        panel.add(startButton);
+        panel.add(finishButton);
+        panel.add(nextStepButton);
+        add(panel, BorderLayout.SOUTH);
     }
 
     public void setLabelHelp(String text) {
         labelHelp.setText(text);
     }
 
-    public void setEnabledControlStepButton(boolean show) {
+    public void setEnabledNextButton(boolean show) {
         nextStepButton.setEnabled(show);
+    }
+
+    public void setEnabledBackButton(boolean show) {
         backStepButton.setEnabled(show);
+    }
+
+    public void setEnabledStartButton(boolean show) {
+        startButton.setEnabled(show);
+    }
+
+    public void setEnabledFinishButton(boolean show) {
+        finishButton.setEnabled(show);
     }
 
     public String getSelectAlgorithm() {
         return comboBoxAlgorithms.getSelectedItem() != null ? comboBoxAlgorithms.getSelectedItem().toString() : null;
     }
 }
+ 

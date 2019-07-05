@@ -10,9 +10,17 @@ import java.io.File;
  * File showFileChooserDialog(String title) - открыть окно выбора файла
  */
 public interface GraphCreatorView {
-    void setEnabledControlStepButton(boolean show);
+    void setEnabledStartButton(boolean show);
+
+    void setEnabledFinishButton(boolean show);
+
+    void setEnabledNextButton(boolean show);
+
+    void setEnabledBackButton(boolean show);
 
     void setLabelHelp(String strHelp);
+
+    void setLog(String message);
 
     void showErrorDialog(String title, String message);
 
@@ -22,3 +30,4 @@ public interface GraphCreatorView {
 
     String getSelectAlgorithm();
 }
+

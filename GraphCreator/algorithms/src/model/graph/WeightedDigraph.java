@@ -42,4 +42,16 @@ public class WeightedDigraph {
             }
         }
     }
+
+    public int index(String s) {
+        return vertexNameOfNumber.get(s);
+    }
+
+    public String name(int vertex) {
+        return new ArrayList<>(vertexNameOfNumber.keySet()).stream()
+                .filter(el -> vertexNameOfNumber.get(el)
+                        .equals(vertex))
+                .findFirst()
+                .get();
+    }
 }

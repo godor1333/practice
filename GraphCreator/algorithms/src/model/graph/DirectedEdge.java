@@ -10,4 +10,16 @@ public class DirectedEdge {
         this.target = target;
         this.weight = weight;
     }
+
+    public int getTo() {
+        return target;
+    }
+
+    public int getFrom() {
+        return source;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
 }

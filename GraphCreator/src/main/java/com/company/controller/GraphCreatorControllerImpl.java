@@ -92,6 +92,19 @@ public class GraphCreatorControllerImpl implements GraphCreatorController {
         currentState.backStep();
         view.setLabelHelp(currentState.getStatus());
     }
+    
+    @Override
+    public void startAlgorithm() {
+        currentState.startAlgorithm();
+        view.setLabelHelp(currentState.getStatus());
+    }
+
+    @Override
+    public void finishAlgorithm() {
+        currentState.finishAlgorithm();
+        view.setLabelHelp(currentState.getStatus());
+    }
+
 
     @Override
     public void mousePressed(MouseEvent e, Object cell) {

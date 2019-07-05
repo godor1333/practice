@@ -40,29 +40,27 @@ public class AlgorithmShortestWayState implements State {
                 mementosView -> {
                     stepsView = mementosView;
                     curStatus = Status.DISPLAY;
-                    view.setEnabledControlStepButton(true);
-                    showMemento(mementosView.get(++indexStep));
+                    view.setEnabledStartButton(true);
                 });
     }
 
     //Обработка нажатия кнопки мыши, если путь уже показан
     private void handlerDisplay(mxCell cell) {
-        model.setNormalStyle();
+        close();
         model.setStyleSelected(true, new Object[]{cell});
-        view.setEnabledControlStepButton(false);
         curStatus = Status.SELECT_ONE_VERTEX;
         sourceVertex = cell;
         indexStep = -1;
     }
 
     //Показать шаг алгоритма
-    private void showMemento(MementoShortestWayView view) {
+    private void showMemento(MementoShortestWayView viewMemento) {
         model.setNormalStyle();
-        Object currentVertex = view.getCurrentVertex();
-        Object[] processedVertices = view.getProcessedVertices();
-        Object[] currentWays = view.getCurrentWays();
-        Object[] inQueueVertices = view.getInQueueVertices();
-        Object[] answer = view.getAnswer();
+        Object currentVertex = viewMemento.getCurrentVertex();
+        Object[] processedVertices = viewMemento.getProcessedVertices();
+        Object[] currentWays = viewMemento.getCurrentWays();
+        Object[] inQueueVertices = viewMemento.getInQueueVertices();
+        Object[] answer = viewMemento.getAnswer();
         if (currentWays != null)
             model.setStyleSelected(true, currentWays);
         if (inQueueVertices != null)
@@ -71,22 +69,49 @@ public class AlgorithmShortestWayState implements State {
             model.setStyle(MY_CUSTOM_CURRENT_VERTEX_STYLE, new Object[]{currentVertex});
         if (processedVertices != null)
             model.setStyle(MY_CUSTOM_VERTEX_SELECTED_STYLE, processedVertices);
-        if (answer!=null)
-            model.setStyleSelected(true,answer);
+        if (answer != null)
+            model.setStyleSelected(true, answer);
+        view.setLog(viewMemento.getLog());
     }
 
     @Override
     public void nextStep() {
-        if ((indexStep + 1) < stepsView.size()) {
+        if (indexStep != -1 && (indexStep + 1) < stepsView.size() - 1) {
             showMemento(stepsView.get(++indexStep));
+            view.setEnabledBackButton(true);
         }
+        if (indexStep == stepsView.size() - 2)
+            view.setEnabledNextButton(false);
     }
 
     @Override
     public void backStep() {
-        if ((indexStep - 1 >= 0)) {
+        if (indexStep != -1 && (indexStep - 1 >= 0)) {
             showMemento(stepsView.get(--indexStep));
+            view.setEnabledNextButton(true);
         }
+        if (indexStep == 0)
+            view.setEnabledBackButton(false);
+    }
+
+    @Override
+    public void startAlgorithm() {
+        view.setEnabledStartButton(false);
+        view.setEnabledFinishButton(true);
+        view.setEnabledNextButton(true);
+        view.setEnabledBackButton(true);
+        indexStep = 0;
+        showMemento(stepsView.get(indexStep));
+    }
+
+    @Override
+    public void finishAlgorithm() {
+        view.setEnabledStartButton(false);
+        view.setEnabledFinishButton(false);
+        view.setEnabledNextButton(false);
+        view.setEnabledBackButton(false);
+        indexStep = stepsView.size() - 1;
+        showMemento(stepsView.get(indexStep));
     }
 
     @Override
@@ -104,8 +129,7 @@ public class AlgorithmShortestWayState implements State {
             curStatus = Status.NORMAL;
             sourceVertex = null;
         } else if (curStatus == Status.DISPLAY) {
-            model.setNormalStyle();
-            view.setEnabledControlStepButton(false);
+            close();
             curStatus = Status.NORMAL;
             sourceVertex = null;
             indexStep = -1;
@@ -127,7 +151,13 @@ public class AlgorithmShortestWayState implements State {
             case PROCESSING:
                 return "Обработка...";
             case DISPLAY:
-                return stepsView.get(stepsView.size() - 1).getAnswer() == null ? "Пути нет" : "Кратчайший путь найден";
+                if (indexStep == -1) {
+                    return "Нажмите старт,чтобы начать пошаговый просмотр алгоритма";
+                } else if (indexStep == stepsView.size() - 1) {
+                    return stepsView.get(stepsView.size() - 1).getLog().split("\\n")[0];
+                } else {
+                    return "Пошаговый режим включен";
+                }
         }
         return null;
     }
@@ -135,6 +165,10 @@ public class AlgorithmShortestWayState implements State {
     @Override
     public void close() {
         model.setNormalStyle();
+        view.setEnabledStartButton(false);
+        view.setEnabledFinishButton(false);
+        view.setEnabledBackButton(false);
+        view.setEnabledNextButton(false);
     }
 
     private enum Status {

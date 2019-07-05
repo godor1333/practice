@@ -43,14 +43,14 @@ public class WeightedDigraph {
         }
     }
 
-    public int index(String s) {
-        return vertexNameOfNumber.get(s);
+    public int getVertexNumber(String vertexName) {
+        return vertexNameOfNumber.get(vertexName);
     }
 
-    public String name(int vertex) {
+    public String getVertexName(int vertexNumber) {
         return new ArrayList<>(vertexNameOfNumber.keySet()).stream()
                 .filter(el -> vertexNameOfNumber.get(el)
-                        .equals(vertex))
+                        .equals(vertexNumber))
                 .findFirst()
                 .get();
     }

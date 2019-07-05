@@ -24,7 +24,7 @@ public class Digraph {
         edges.get(edge.getFrom()).add(edge);
     }
 
-    public Iterable<DirectedEdge> getEdgesForVertex(int vertex) {
-        return edges.get(vertex);
+    public Iterable<DirectedEdge> getEdgesForVertex(int vertexNumber) {
+        return edges.get(vertexNumber);
     }
 }

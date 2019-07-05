@@ -15,4 +15,16 @@ public class Digraph {
             this.edges.add(new LinkedHashSet<>());
         }
     }
+
+    public int getVertexCount() {
+        return vertexCount;
+    }
+
+    public void addEdge(DirectedEdge edge) {
+        edges.get(edge.getFrom()).add(edge);
+    }
+
+    public Iterable<DirectedEdge> getEdgesForVertex(int vertex) {
+        return edges.get(vertex);
+    }
 }

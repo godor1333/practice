@@ -25,6 +25,14 @@ public class MoveState implements State {
     }
 
     @Override
+    public void startAlgorithm() {
+    }
+
+    @Override
+    public void finishAlgorithm() {
+    }
+
+    @Override
     public void mousePressed(double posX, double posY, Object cell) {
         if (cell != null) {
             currentCell = (mxCell) cell;

@@ -14,6 +14,10 @@ public interface State {
 
     void backStep();
 
+    void startAlgorithm();
+
+    void finishAlgorithm();
+
     void mousePressed(double posX, double posY, Object cell);
 
     void mouseReleased(double posX, double posY, Object cell);

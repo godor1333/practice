@@ -1,9 +1,6 @@
-package model.graph;
+package graph.data_structures;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class Digraph {
     private int vertexCount;
@@ -24,7 +21,7 @@ public class Digraph {
         edges.get(edge.getFrom()).add(edge);
     }
 
-    public Iterable<DirectedEdge> getEdgesForVertex(int vertexNumber) {
-        return edges.get(vertexNumber);
+    public Iterable<DirectedEdge> getEdgesForVertex(int vertex) {
+        return edges.get(vertex);
     }
 }

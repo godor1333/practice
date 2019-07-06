@@ -2,7 +2,7 @@ package graph.shortest_way;
 
 import graph.data_structures.DirectedEdge;
 import graph.data_structures.WeightedDigraph;
-import model.Entry;
+import graph.data_structures.Entry;
 
 import java.util.PriorityQueue;
 

@@ -3,6 +3,7 @@ package shortest.way;
 import model.graph.DirectedEdge;
 
 import java.util.PriorityQueue;
+import java.util.Stack;
 
 public class Dijkstra implements ShortestWayAlgorithm {
     private DirectedEdge[] edgeTo;
@@ -17,6 +18,10 @@ public class Dijkstra implements ShortestWayAlgorithm {
 
     @Override
     public Iterable<DirectedEdge> pathTo(int v) {
-        return null;
+        if (!hasPathTo(v)) return null;
+        Stack<DirectedEdge> path = new Stack<>();
+        for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.getFrom()])
+            path.push(e);
+        return path;
     }
 }

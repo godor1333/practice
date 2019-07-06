@@ -1,6 +1,9 @@
-package model.graph;
+package graph.data_structures;
+import graph.shortest_way.MementoShortestWay;
+import graph.shortest_way.ShortestWayAlgorithm;
 
 import java.util.*;
+import java.util.stream.Stream;
 
 public class WeightedDigraph {
     private Digraph graph;
@@ -43,15 +46,19 @@ public class WeightedDigraph {
         }
     }
 
-    public int getVertexNumber(String vertexName) {
-        return vertexNameOfNumber.get(vertexName);
+    public int index(String s) {
+        return vertexNameOfNumber.get(s);
     }
 
-    public String getVertexName(int vertexNumber) {
+    public String name(int vertex) {
         return new ArrayList<>(vertexNameOfNumber.keySet()).stream()
-                .filter(el -> vertexNameOfNumber.get(el)
-                        .equals(vertexNumber))
-                .findFirst()
-                .get();
+                                                           .filter(el -> vertexNameOfNumber.get(el)
+                                                                                           .equals(vertex))
+                                                           .findFirst()
+                                                           .get();
+    }
+
+    public List<MementoShortestWay> shortestWay(String source, String target, ShortestWayAlgorithm algorithm) {
+        return algorithm.buildWay(graph, index(source), index(target));
     }
 }

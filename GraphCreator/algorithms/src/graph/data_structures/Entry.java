@@ -1,4 +1,4 @@
-package model.graph;
+package graph.data_structures;
 
 import java.util.Objects;
 

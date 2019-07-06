@@ -1,4 +1,4 @@
-package model.graph;
+package graph.data_structures;
 
 public class DirectedEdge {
     private final int source;

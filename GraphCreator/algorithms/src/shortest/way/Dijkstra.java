@@ -13,7 +13,7 @@ public class Dijkstra implements ShortestWayAlgorithm {
 
     @Override
     public boolean hasPathTo(int v) {
-        return false;
+        return distTo[v] < Double.POSITIVE_INFINITY;
     }
 
     @Override

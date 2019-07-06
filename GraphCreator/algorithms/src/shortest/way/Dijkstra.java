@@ -1,7 +1,9 @@
 package shortest.way;
 
+import model.graph.Digraph;
 import model.graph.DirectedEdge;
 
+import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Stack;
 
@@ -23,5 +25,10 @@ public class Dijkstra implements ShortestWayAlgorithm {
         for (DirectedEdge e = edgeTo[v]; e != null; e = edgeTo[e.getFrom()])
             path.push(e);
         return path;
+    }
+
+    @Override
+    public List<MementoShortestWay> buildWay(Digraph G, int source, int target) {
+        return null;
     }
 }

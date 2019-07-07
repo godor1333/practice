@@ -33,28 +33,28 @@ public class MementoShortestWay {
     }
 
     public String getProcessedVertices(WeightedDigraph digraph,String separator) {
-        StringBuilder sb = new StringBuilder();
+        StringBuilder stringBuilder = new StringBuilder();
         for(int i=0;i<processedVertices.length;i++){
             if(processedVertices[i]){
-                sb.append(digraph.name(i)).append(separator).append("\n");
+                stringBuilder.append(digraph.name(i)).append(separator).append("\n");
             }
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     public String getCurrentWays(WeightedDigraph digraph,String separator) {
-        StringBuilder sb = new StringBuilder();
-        for(DirectedEdge e:currentWays){
-            if(e!=null) {
-                sb.append(digraph.name(e.getFrom()))
+        StringBuilder stringBuilder = new StringBuilder();
+        for(DirectedEdge edge:currentWays){
+            if(edge!=null) {
+                stringBuilder.append(digraph.name(edge.getFrom()))
                         .append(separator)
-                        .append(digraph.name(e.getTo()))
+                        .append(digraph.name(edge.getTo()))
                         .append(separator)
-                        .append(e.getWeight())
+                        .append(edge.getWeight())
                         .append("\n");
             }
         }
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     public String getInQueueVertices(WeightedDigraph digraph,String separator) {

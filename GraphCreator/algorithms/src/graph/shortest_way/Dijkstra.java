@@ -26,18 +26,14 @@ public class Dijkstra implements ShortestWayAlgorithm {
                 this.edgeTo[vertexTo] = edge;
                 if (priorityQueue.contains(new Entry(vertexTo))) {
                     final Iterator<Entry> iterator = priorityQueue.iterator();
-                    boolean flag = false;
                     while (iterator.hasNext()) {
                         final Entry currentElement = iterator.next();
                         if (currentElement.getValue().equals(vertexTo)) {
                             iterator.remove();
-                            flag = true;
                             break;
                         }
                     }
-                    if (flag) {
                         priorityQueue.offer(new Entry(distTo[vertexTo], vertexTo));
-                    }
                 } else {
                     priorityQueue.offer(new Entry(distTo[vertexTo], vertexTo));
                 }

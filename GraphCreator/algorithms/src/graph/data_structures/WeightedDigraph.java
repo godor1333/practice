@@ -52,10 +52,10 @@ public class WeightedDigraph {
 
     public String name(int vertex) {
         return new ArrayList<>(vertexNameOfNumber.keySet()).stream()
-                                                           .filter(el -> vertexNameOfNumber.get(el)
-                                                                                           .equals(vertex))
-                                                           .findFirst()
-                                                           .get();
+                .filter(el -> vertexNameOfNumber.get(el)
+                        .equals(vertex))
+                .findFirst()
+                .get();
     }
 
     public List<MementoShortestWay> shortestWay(String source, String target, ShortestWayAlgorithm algorithm) {

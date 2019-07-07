@@ -36,6 +36,10 @@ public interface GraphCreatorController {
 
     void backStep();
 
+    void startAlgorithm();
+
+    void finishAlgorithm();
+
     void mousePressed(MouseEvent e, Object cell);
 
     void mouseReleased(MouseEvent e, Object cell);

@@ -1,4 +1,4 @@
-package graph.data_structures;
+package model;
 
 import java.util.Objects;
 
@@ -21,6 +21,14 @@ public class Entry implements Comparable<Entry> {
 
     public Integer getValue() {
         return value;
+    }
+
+    public void setKey(Double key) {
+        this.key = key;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
     }
 
     @Override

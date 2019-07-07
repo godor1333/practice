@@ -2,7 +2,7 @@ package graph.shortest_way;
 
 import graph.data_structures.DirectedEdge;
 import graph.data_structures.WeightedDigraph;
-import graph.data_structures.Entry;
+import model.Entry;
 
 import java.util.PriorityQueue;
 
@@ -33,36 +33,36 @@ public class MementoShortestWay {
     }
 
     public String getProcessedVertices(WeightedDigraph digraph,String separator) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         for(int i=0;i<processedVertices.length;i++){
             if(processedVertices[i]){
-                stringBuilder.append(digraph.name(i)).append(separator).append("\n");
+                sb.append(digraph.name(i)).append(separator).append("\n");
             }
         }
-        return stringBuilder.toString();
+        return sb.toString();
     }
 
     public String getCurrentWays(WeightedDigraph digraph,String separator) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for(DirectedEdge edge:currentWays){
-           if(edge!=null) {
-               stringBuilder.append(digraph.name(edge.getFrom()))
-                       .append(separator)
-                       .append(digraph.name(edge.getTo()))
-                       .append(separator)
-                       .append(edge.getWeight())
-                       .append("\n");
-           }
+        StringBuilder sb = new StringBuilder();
+        for(DirectedEdge e:currentWays){
+            if(e!=null) {
+                sb.append(digraph.name(e.getFrom()))
+                        .append(separator)
+                        .append(digraph.name(e.getTo()))
+                        .append(separator)
+                        .append(e.getWeight())
+                        .append("\n");
+            }
         }
-        return stringBuilder.toString();
+        return sb.toString();
     }
 
     public String getInQueueVertices(WeightedDigraph digraph,String separator) {
-        StringBuilder stringBuilder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
         for(Entry element: inQueueVertices){
-            stringBuilder.append(digraph.name(element.getValue())).append(separator).append("\n");
+            builder.append(digraph.name(element.getValue())).append(separator).append("\n");
         }
-        return stringBuilder.toString();
+        return builder.toString();
     }
 
     public String[] getLog() {

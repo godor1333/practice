@@ -105,7 +105,6 @@ public class GraphCreatorControllerImpl implements GraphCreatorController {
         view.setLabelHelp(currentState.getStatus());
     }
 
-
     @Override
     public void mousePressed(MouseEvent e, Object cell) {
         currentState.mousePressed(e.getX(), e.getY(), cell);

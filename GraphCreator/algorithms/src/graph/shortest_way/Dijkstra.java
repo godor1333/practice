@@ -2,7 +2,7 @@ package graph.shortest_way;
 
 import graph.data_structures.Digraph;
 import graph.data_structures.DirectedEdge;
-import graph.data_structures.Entry;
+import model.Entry;
 
 import java.util.*;
 

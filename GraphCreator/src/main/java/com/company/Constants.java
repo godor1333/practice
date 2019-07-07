@@ -12,8 +12,6 @@ public interface Constants {
         double WIDTH_VERTEX = 40;
         double HEIGHT_VERTEX = 40;
         int MAX_SIZE_VERTEX_NAME = 15;
-        int WIDTH = 1000;
-        int HEIGHT = 800;
         int INTEND = 5;
     }
 
@@ -45,6 +43,8 @@ public interface Constants {
         String DELETE = "Удалить";
         String NEXT = "Вперед";
         String BACK = "Назад";
+        String START = "Старт";
+        String FINISH = "Завершить";
     }
 
     String SEPARATOR = "$";

@@ -22,4 +22,13 @@ public class DirectedEdge {
     public double getWeight() {
         return weight;
     }
+
+    @Override
+    public String toString() {
+        return "DirectedEdge{" +
+                "source=" + source +
+                ", target=" + target +
+                ", weight=" + weight +
+                '}';
+    }
 }

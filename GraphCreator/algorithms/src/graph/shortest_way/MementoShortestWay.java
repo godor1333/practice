@@ -4,6 +4,7 @@ import graph.data_structures.DirectedEdge;
 import graph.data_structures.WeightedDigraph;
 import graph.data_structures.Entry;
 
+import java.util.Arrays;
 import java.util.PriorityQueue;
 
 public class MementoShortestWay {
@@ -67,5 +68,16 @@ public class MementoShortestWay {
 
     public String[] getLog() {
         return log;
+    }
+
+    @Override
+    public String toString() {
+        return "MementoShortestWay{" +
+                "currentVertex=" + currentVertex +
+                ", processedVertices=" + Arrays.toString(processedVertices) +
+                ", currentWays=" + Arrays.toString(currentWays) +
+                ", inQueueVertices=" + inQueueVertices +
+                ", log=" + Arrays.toString(log) +
+                '}';
     }
 }

@@ -48,4 +48,12 @@ public class Entry implements Comparable<Entry> {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    @Override
+    public String toString() {
+        return "Entry{" +
+                "key=" + key +
+                ", value=" + value +
+                '}';
+    }
 }

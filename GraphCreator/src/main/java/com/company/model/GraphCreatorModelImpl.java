@@ -22,7 +22,15 @@ public class GraphCreatorModelImpl implements GraphCreatorModel {
     private final Object parent;
 
     public GraphCreatorModelImpl() {
-        this.graph = new mxGraph();
+        this.graph = new mxGraph(){
+            @Override
+            public boolean isCellSelectable(Object cell) {
+                if(((mxCell) cell).isEdge()){
+                    return false;
+                }
+                return super.isCellSelectable(cell);
+            }
+        };
         this.parent = graph.getDefaultParent();
         graph.setCellsEditable(false);//Нельзя редактировать
         graph.setCellsResizable(false);//Нельзя изменять текст
@@ -41,7 +49,7 @@ public class GraphCreatorModelImpl implements GraphCreatorModel {
     }
 
 
-  @Override
+    @Override
     public boolean addVertex(String name, double posX, double posY, double width, double height) {
         for (Object v : graph.getChildVertices(parent)) {
             if (((mxCell) v).getValue().equals(name))
@@ -58,7 +66,9 @@ public class GraphCreatorModelImpl implements GraphCreatorModel {
     @Override
     public boolean addEdge(String weight, Object v1, Object v2) {
         try {
-            Double.parseDouble(weight);
+            Double w = Double.parseDouble(weight);
+            if(w<0)
+                return false;
             graph.getModel().beginUpdate();
             graph.insertEdge(parent, null, weight, v1, v2, MY_CUSTOM_EDGE_NORMAL_STYLE);
             graph.getModel().endUpdate();

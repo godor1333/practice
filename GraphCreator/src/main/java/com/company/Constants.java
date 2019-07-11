@@ -22,19 +22,21 @@ public interface Constants {
         String MY_CUSTOM_EDGE_NORMAL_STYLE = "MY_CUSTOM_EDGE_NORMAL_STYLE";
         String MY_CUSTOM_VERTEX_SELECTED_STYLE = "MY_CUSTOM_VERTEX_SELECTED_STYLE";
         String MY_CUSTOM_EDGE_SELECTED_STYLE = "MY_CUSTOM_EDGE_SELECTED_STYLE";
-        String STROKE_COLOR_NORMAL = "#cdc4d1";
-        String FILL_COLOR_NORMAL = "#67adb9";
-        String FONT_COLOR_NORMAL = "#fecb16";
-        String STROKE_COLOR_SELECTED = "#fecb16";
-        String FILL_COLOR_SELECTED = "#c66179";
-        String FONT_COLOR_SELECTED = "#fecb16";
-        String STROKE_VERTEX_SIZE = "1";
+        String STROKE_COLOR_NORMAL ="#996AD6";//"#cdc4d1";
+        String FILL_COLOR_NORMAL ="#FFF273";//"#67adb9";
+        String FONT_COLOR_NORMAL = "#530FAD";//"#fecb16";
+        String STROKE_COLOR_SELECTED = "#4F2982";//"#fecb16";
+        String FILL_COLOR_SELECTED = "#FF0000";//"#c66179";
+        String FONT_COLOR_SELECTED = "#FFFF00";//"#530FAD";//"#fecb16";
+        String STROKE_VERTEX_SIZE = "3";
         String STROKE_EDGE_SIZE = "3";
         String FONT_SIZE = "14";
-        String GREEN_COLOR = "#228B22";
+        String STROKE_COLOR_CURRENT = "#67E300";//"#fecb16";
+        String FILL_COLOR_CURRENT = "#A9F16D";//"#c66179";
+        String FONT_COLOR_CURRENT = "#000000";//"#530FAD";//"#fecb16";
     }
 
-    interface NameButton{
+    interface NameButton {
         String SAVE = "Сохранить";
         String LOAD = "Загрузить";
         String MOVE = "Перемещение";
@@ -45,6 +47,7 @@ public interface Constants {
         String BACK = "Назад";
         String START = "Старт";
         String FINISH = "Завершить";
+        String RESET = "Сбросить";
     }
 
     String SEPARATOR = "$";

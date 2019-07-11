@@ -18,6 +18,8 @@ public interface GraphCreatorView {
 
     void setEnabledBackButton(boolean show);
 
+    void setEnabledResetButton(boolean show);
+
     void setLabelHelp(String strHelp);
 
     void setLog(String message);
@@ -30,4 +32,3 @@ public interface GraphCreatorView {
 
     String getSelectAlgorithm();
 }
-

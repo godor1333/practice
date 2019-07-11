@@ -11,14 +11,6 @@
         <sonar.language>java</sonar.language>
         <sonar.host.url>http://sonar.example.com:9000/</sonar.host.url>
     </properties>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
     <build>
         <plugins>
             <plugin>
@@ -31,6 +23,4 @@
             </plugin>
         </plugins>
     </build>
-
-
 </project>

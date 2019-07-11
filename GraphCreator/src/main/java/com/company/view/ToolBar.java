@@ -4,6 +4,9 @@ import com.company.controller.GraphCreatorController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.company.Constants.Algorithms.*;
 import static com.company.Constants.NameButton.*;
@@ -18,6 +21,11 @@ class ToolBar extends JPanel {
     private JButton nextStepButton;
     private JButton startButton;
     private JButton finishButton;
+    private JButton resetButton;
+    private JButton moveButton;
+    private JButton addVertexButton;
+    private JButton connectVertexButton;
+    private JButton deleteButton;
 
     public ToolBar(GraphCreatorController controller) {
         this.controller = controller;
@@ -27,44 +35,27 @@ class ToolBar extends JPanel {
     private void initGUI() {
         setLayout(new BorderLayout());
         initButtons();
-        initLabelHelpAndNextBack();
+        initLabelHelp();
         initButtonControlAlgorithms();
     }
 
     private void initButtons() {
         JPanel panelButton = new JPanel();
-        JButton saveBtn = new JButton(SAVE);
-        saveBtn.addActionListener(e -> controller.saveGraph());
-
-        JButton loadBtn = new JButton(LOAD);
-        loadBtn.addActionListener(e -> controller.loadGraph());
-
-        JButton moveBtn = new JButton(MOVE);
-        moveBtn.addActionListener(e -> controller.setStateOfMotion());
-
-        JButton addVertexBtn = new JButton(ADD_VERTEX);
-        addVertexBtn.addActionListener(e -> controller.setStateOfAddingVertices());
-
-        JButton connectVertexBtn = new JButton(CONNECT_VERTEX);
-        connectVertexBtn.addActionListener(e -> controller.setStateOfConnectionVertices());
-
+        List<JButton> buttonList = new ArrayList<>();
+        createButton(SAVE,e->controller.saveGraph(),buttonList,true);
+        createButton(LOAD,e->controller.loadGraph(),buttonList,true);
+        moveButton = createButton(MOVE,e->controller.setStateOfMotion(),buttonList,true);
+        addVertexButton = createButton(ADD_VERTEX,e->controller.setStateOfAddingVertices(),buttonList,true);
+        connectVertexButton = createButton(CONNECT_VERTEX,e->controller.setStateOfConnectionVertices(),buttonList,true);
+        deleteButton = createButton(DELETE,e->controller.setStateOfDelete(),buttonList,true);
         comboBoxAlgorithms = new JComboBox(ITEMS);
         comboBoxAlgorithms.addActionListener(e -> controller.setStateOfAlgorithm());
-
-        JButton deleteBtn = new JButton(DELETE);
-        deleteBtn.addActionListener(e -> controller.setStateOfDelete());
-
-        panelButton.add(saveBtn);
-        panelButton.add(loadBtn);
-        panelButton.add(moveBtn);
-        panelButton.add(addVertexBtn);
-        panelButton.add(connectVertexBtn);
+        buttonList.forEach(button->panelButton.add(button));
         panelButton.add(comboBoxAlgorithms);
-        panelButton.add(deleteBtn);
         add(panelButton, BorderLayout.NORTH);
     }
 
-     private void initLabelHelpAndNextBack() {
+    private void initLabelHelp() {
         JPanel panelLabel = new JPanel();
         panelLabel.setLayout(new GridBagLayout());
         panelLabel.setBackground(new Color(222, 239, 216));
@@ -78,24 +69,22 @@ class ToolBar extends JPanel {
 
     private void initButtonControlAlgorithms() {
         JPanel panel = new JPanel();
-        startButton = new JButton(START);
-        startButton.setEnabled(false);
-        startButton.addActionListener(e -> controller.startAlgorithm());
-        finishButton = new JButton(FINISH);
-        finishButton.setEnabled(false);
-        finishButton.addActionListener(e -> controller.finishAlgorithm());
-        backStepButton = new JButton(BACK);
-        backStepButton.setEnabled(false);
-        backStepButton.addActionListener(e -> controller.backStep());
-        nextStepButton = new JButton(NEXT);
-        nextStepButton.setEnabled(false);
-        nextStepButton.addActionListener(e -> controller.nextStep());
-
-        panel.add(backStepButton);
-        panel.add(startButton);
-        panel.add(finishButton);
-        panel.add(nextStepButton);
+        List<JButton> buttonList = new ArrayList<>();
+        backStepButton = createButton(BACK,e->controller.backStep(),buttonList,false);
+        startButton = createButton(START, e -> controller.startAlgorithm(),buttonList,false);
+        resetButton = createButton(RESET,e->controller.resetAlgorithm(),buttonList,false);
+        finishButton =createButton(FINISH,e->controller.finishAlgorithm(),buttonList,false);
+        nextStepButton =createButton(NEXT,e->controller.nextStep(),buttonList,false);
+        buttonList.forEach(button->panel.add(button));
         add(panel, BorderLayout.SOUTH);
+    }
+
+    private JButton createButton(String name, ActionListener listener,List<JButton> container,boolean enabled){
+        JButton button = new JButton(name);
+        button.addActionListener(listener);
+        button.setEnabled(enabled);
+        container.add(button);
+        return button;
     }
 
     public void setLabelHelp(String text) {
@@ -118,8 +107,29 @@ class ToolBar extends JPanel {
         finishButton.setEnabled(show);
     }
 
+    public void setEnabledResetButton(boolean show){resetButton.setEnabled(show);}
+
     public String getSelectAlgorithm() {
         return comboBoxAlgorithms.getSelectedItem() != null ? comboBoxAlgorithms.getSelectedItem().toString() : null;
     }
+
+    public JLabel getLabelHelp() {
+        return labelHelp;
+    }
+
+    public JButton getMoveButton() {
+        return moveButton;
+    }
+
+    public JButton getAddVertexButton() {
+        return addVertexButton;
+    }
+
+    public JButton getConnectVertexButton() {
+        return connectVertexButton;
+    }
+
+    public JButton getDeleteButton() {
+        return deleteButton;
+    }
 }
- 

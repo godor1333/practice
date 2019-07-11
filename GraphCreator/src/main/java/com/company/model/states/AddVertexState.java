@@ -36,6 +36,10 @@ public class AddVertexState implements State {
     }
 
     @Override
+    public void resetAlgorithm() {
+    }
+
+    @Override
     public void mousePressed(double posX, double posY, Object cell) {
         String name = view.showInputDialog("Добавить вершину", "Введите название вершины");
         if (name != null && !name.isEmpty()) {

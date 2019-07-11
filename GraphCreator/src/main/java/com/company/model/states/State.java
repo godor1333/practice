@@ -18,6 +18,8 @@ public interface State {
 
     void finishAlgorithm();
 
+    void resetAlgorithm();
+
     void mousePressed(double posX, double posY, Object cell);
 
     void mouseReleased(double posX, double posY, Object cell);

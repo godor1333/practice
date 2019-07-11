@@ -56,6 +56,10 @@ public class ConnectionVertexState implements State {
     }
 
     @Override
+    public void resetAlgorithm() {
+    }
+
+    @Override
     public void mousePressed(double posX, double posY, Object cell) {
         if (cell != null && ((mxCell) cell).isVertex()) {
             mxCell clickCell = (mxCell) cell;

@@ -92,7 +92,7 @@ public class GraphCreatorControllerImpl implements GraphCreatorController {
         currentState.backStep();
         view.setLabelHelp(currentState.getStatus());
     }
-    
+
     @Override
     public void startAlgorithm() {
         currentState.startAlgorithm();
@@ -102,6 +102,12 @@ public class GraphCreatorControllerImpl implements GraphCreatorController {
     @Override
     public void finishAlgorithm() {
         currentState.finishAlgorithm();
+        view.setLabelHelp(currentState.getStatus());
+    }
+
+    @Override
+    public void resetAlgorithm() {
+        currentState.resetAlgorithm();
         view.setLabelHelp(currentState.getStatus());
     }
 

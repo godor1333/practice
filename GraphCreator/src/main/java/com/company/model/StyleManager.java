@@ -88,10 +88,10 @@ class StyleManager {
     public static void initMyCustomCurrentVertexStyle(mxGraph graph) {
         mxStylesheet stylesheet = graph.getStylesheet();
         Map<String, Object> vertexStyle = new Hashtable<>();
-        vertexStyle.put(mxConstants.STYLE_FILLCOLOR, GREEN_COLOR);
-        vertexStyle.put(mxConstants.STYLE_FONTCOLOR, FONT_COLOR_SELECTED);
+        vertexStyle.put(mxConstants.STYLE_FILLCOLOR, FILL_COLOR_CURRENT);
+        vertexStyle.put(mxConstants.STYLE_FONTCOLOR, FONT_COLOR_CURRENT);
         vertexStyle.put(mxConstants.STYLE_STROKEWIDTH, STROKE_VERTEX_SIZE);
-        vertexStyle.put(mxConstants.STYLE_STROKECOLOR, GREEN_COLOR);
+        vertexStyle.put(mxConstants.STYLE_STROKECOLOR, STROKE_COLOR_CURRENT);
         vertexStyle.put(mxConstants.STYLE_FONTSIZE, FONT_SIZE);
         vertexStyle.put(mxConstants.STYLE_PERIMETER, mxConstants.PERIMETER_ELLIPSE);
         vertexStyle.put(mxConstants.STYLE_FONTSTYLE, mxConstants.FONT_BOLD);
@@ -104,7 +104,7 @@ class StyleManager {
         mxStylesheet stylesheet = graph.getStylesheet();
         Map<String, Object> vertexStyle = new Hashtable<>();
         vertexStyle.put(mxConstants.STYLE_FILLCOLOR, FILL_COLOR_NORMAL);
-        vertexStyle.put(mxConstants.STYLE_FONTCOLOR, FONT_COLOR_SELECTED);
+        vertexStyle.put(mxConstants.STYLE_FONTCOLOR, FONT_COLOR_NORMAL);
         vertexStyle.put(mxConstants.STYLE_STROKEWIDTH, "3");
         vertexStyle.put(mxConstants.STYLE_STROKECOLOR, STROKE_COLOR_SELECTED);
         vertexStyle.put(mxConstants.STYLE_FONTSIZE, FONT_SIZE);

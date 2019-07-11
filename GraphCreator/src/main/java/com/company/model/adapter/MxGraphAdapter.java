@@ -72,7 +72,7 @@ public class MxGraphAdapter implements GraphAdapter {
             Object[] processedVertices = convertFromGraphToMxGraph(graph, memento.getProcessedVertices(digraph, SEPARATOR));
             Object[] currentWays = convertFromGraphToMxGraph(graph, memento.getCurrentWays(digraph, SEPARATOR));
             Object[] inQueueVertices = convertFromGraphToMxGraph(graph, memento.getInQueueVertices(digraph, SEPARATOR));
-            String log = String.format(memento.getLog()[0], digraph.name(Integer.parseInt(memento.getLog()[1])));
+            String log= String.format(memento.getLog()[0], digraph.name(Integer.parseInt(memento.getLog()[1])));
             if (currentVertex != null)
                 mementosView.add(new MementoShortestWayView(currentVertex[0], processedVertices, currentWays, inQueueVertices, null, log));
             else

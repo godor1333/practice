@@ -30,23 +30,29 @@ public class AlgorithmShortestWayState implements State {
         curStatus = Status.SELECT_ONE_VERTEX;
         sourceVertex = source;
         model.setStyleSelected(true, new Object[]{sourceVertex});
+        view.setEnabledResetButton(true);
     }
 
     //Обработка нажатия кнопки мыши, если выбрана одна вершина
     private void handlerSelectOneVer(mxCell target) {
         curStatus = Status.PROCESSING;
-        model.setStyleSelected(false, new Object[]{sourceVertex});
+        model.setStyleSelected(true, new Object[]{target});
+        view.setLog("----------------------------------------------------------------------------------");
+        view.setLog("Поиск кратчайшего пути из вершины "+sourceVertex.getValue()+" в вершину "+target.getValue()+"!!!");
+        view.setLog("----------------------------------------------------------------------------------");
         adapter.shortestWay(view.getSelectAlgorithm(), model.getGraph(), sourceVertex, target,
                 mementosView -> {
                     stepsView = mementosView;
                     curStatus = Status.DISPLAY;
                     view.setEnabledStartButton(true);
+                    view.setLabelHelp(getStatus());
                 });
     }
 
     //Обработка нажатия кнопки мыши, если путь уже показан
     private void handlerDisplay(mxCell cell) {
         close();
+        view.setEnabledResetButton(true);
         model.setStyleSelected(true, new Object[]{cell});
         curStatus = Status.SELECT_ONE_VERTEX;
         sourceVertex = cell;
@@ -110,8 +116,19 @@ public class AlgorithmShortestWayState implements State {
         view.setEnabledFinishButton(false);
         view.setEnabledNextButton(false);
         view.setEnabledBackButton(false);
+        for (int i=indexStep+1;i<stepsView.size()-1;i++){
+            view.setLog(stepsView.get(i).getLog());
+        }
         indexStep = stepsView.size() - 1;
         showMemento(stepsView.get(indexStep));
+    }
+
+    @Override
+    public void resetAlgorithm() {
+        close();
+        curStatus = Status.NORMAL;
+        sourceVertex = null;
+        indexStep = -1;
     }
 
     @Override
@@ -124,17 +141,7 @@ public class AlgorithmShortestWayState implements State {
                 handlerSelectOneVer(clickCell);
             else if (curStatus == Status.DISPLAY)
                 handlerDisplay(clickCell);
-        } else if (curStatus == Status.SELECT_ONE_VERTEX) {
-            model.setStyleSelected(false, new Object[]{sourceVertex});
-            curStatus = Status.NORMAL;
-            sourceVertex = null;
-        } else if (curStatus == Status.DISPLAY) {
-            close();
-            curStatus = Status.NORMAL;
-            sourceVertex = null;
-            indexStep = -1;
         }
-
     }
 
     @Override
@@ -169,6 +176,7 @@ public class AlgorithmShortestWayState implements State {
         view.setEnabledFinishButton(false);
         view.setEnabledBackButton(false);
         view.setEnabledNextButton(false);
+        view.setEnabledResetButton(false);
     }
 
     private enum Status {

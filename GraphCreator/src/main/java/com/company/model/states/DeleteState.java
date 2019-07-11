@@ -29,6 +29,10 @@ public class DeleteState implements State {
     }
 
     @Override
+    public void resetAlgorithm() {
+    }
+
+    @Override
     public void mousePressed(double posX, double posY, Object cell) {
         if (cell != null) {
             Object[] cells = new Object[]{cell};

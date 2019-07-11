@@ -39,10 +39,10 @@ public class GraphCreatorViewImpl extends JFrame implements GraphCreatorView {
         panel.setLayout(new BorderLayout(INTEND, INTEND));
         panel.setBorder(new EmptyBorder(INTEND, INTEND, INTEND, INTEND));
         toolBar = new ToolBar(controller);
-        toolBar.setPreferredSize(new Dimension((int) (sSize.width * 0.95), (int) (sSize.height * 0.13)));
+        toolBar.setPreferredSize(new Dimension((int) (sSize.width * 0.95), (int) (sSize.height * 0.12)));
         Creator creator = new Creator(controller, model);
         creator.setPreferredSize(new Dimension((int) (sSize.width * 0.7), (int) (sSize.height * 0.75)));
-        textArea = new JTextArea(10, 50);
+        textArea = new JTextArea(100, 50);
         textArea.setEnabled(false);
         textArea.setDisabledTextColor(Color.BLACK);
         JScrollPane scrollPane = new JScrollPane(textArea);
@@ -73,6 +73,11 @@ public class GraphCreatorViewImpl extends JFrame implements GraphCreatorView {
     @Override
     public void setEnabledBackButton(boolean show) {
         toolBar.setEnabledBackButton(show);
+    }
+
+    @Override
+    public void setEnabledResetButton(boolean show) {
+        toolBar.setEnabledResetButton(show);
     }
 
     @Override
@@ -108,5 +113,9 @@ public class GraphCreatorViewImpl extends JFrame implements GraphCreatorView {
     @Override
     public String getSelectAlgorithm() {
         return toolBar.getSelectAlgorithm();
+    }
+
+    public ToolBar getToolBar() {
+        return toolBar;
     }
 }
